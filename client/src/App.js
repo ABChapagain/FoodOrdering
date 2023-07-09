@@ -1,12 +1,18 @@
-import './App.css';
-import Layout from './components/Layout/Layout';
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage';
+import PageNotFound from './pages/PageNotFound';
+import Register from './pages/Auth/Register';
+
+
 
 function App() {
   return (
     <>
-      <Layout>
-        <h1>Food Ordering Website</h1>
-      </Layout>
+      <Routes>
+        <Route exact path='/' element={<HomePage />} />
+        <Route exact path='/register' element={<Register />} />
+        <Route exact path='*' element={<PageNotFound />} />
+      </Routes>
 
     </>
   );
