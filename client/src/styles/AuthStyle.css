@@ -38,12 +38,22 @@
 .form-container form button {
     border: 1px solid black;
     border-radius: 9px;
-    margin-left: 120px;
+   
     margin-top: 10px;
     background-color: #000;
     color: white;
-    width: 100px;
-
+    width: 200px;
+}
+.login{
+    width: 100px !important;
+}
+.register,.reset{
+    width: 100px !important;
+     margin-left: 120px; 
+}
+.loginbuttons{
+    display: flex;
+    justify-content: space-between;
 }
 
 .form-container form button:hover {

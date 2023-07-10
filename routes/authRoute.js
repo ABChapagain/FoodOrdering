@@ -1,5 +1,5 @@
 import express from 'express'
-import { registerController, loginController, testController } from '../controllers/authController.js';
+import { registerController, loginController, testController, forgotPasswordController } from '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 // router object 
 const router = express.Router();
@@ -12,11 +12,21 @@ router.post('/register', registerController);
 //FOR LOGIN  || METHOD POST
 router.post('/login', loginController);
 
+//FORGOT PASSWORD || METHOD POST
+router.post('/forgot-password', forgotPasswordController)
+
 //FOR TEST || METHOD GET
 router.get('/test', requireSignIn, isAdmin, testController);
 
-//PROTECTED ROUTE AUTH || METHOD GET
+//PROTECTED ROUTE AUTH || METHOD GET FOR USER
 router.get('/user-auth', requireSignIn, (req, res) => {
+    res.status(200).send({
+        ok: true
+    })
+})
+
+//PROTECTED ROUTE AUTH || METHOD GET FOR ADMIN
+router.get('/admin-auth', requireSignIn, isAdmin, (req, res) => {
     res.status(200).send({
         ok: true
     })
