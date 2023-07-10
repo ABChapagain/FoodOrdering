@@ -3,8 +3,6 @@ import Layout from '../../components/Layout/Layout'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
 import "../../styles/AuthStyle.css";
-
-
 import axios from 'axios';
 
 const Register = () => {
@@ -56,7 +54,7 @@ const Register = () => {
                     <div className="mb-3 form-group">
                         <input type="text" value={address} className="form-control" id="exampleInputAddress" placeholder='Enter Your Address' onChange={(e) => setAddress(e.target.value)} required />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">REGISTER</button>
                 </form>
 
             </div>
