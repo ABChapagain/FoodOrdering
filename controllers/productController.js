@@ -1,6 +1,7 @@
 import productModel from '../models/productModel.js'
 import slugify from 'slugify';
 import fs from 'fs'
+import exp from 'constants';
 
 export const createProductController = async (req, res) => {
     try {
@@ -207,6 +208,27 @@ export const productListController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: 'Error while Counting product',
+            error
+        })
+    }
+}
+
+//search product controller
+export const searchProductController = async (req, res) => {
+    try {
+        const { keyword } = req.params;
+        const result = await productModel.find({
+            $or: [
+                { name: { $regex: keyword, $options: 'i' } },
+                { description: { $regex: keyword, $options: 'i' } }
+            ]
+        }).select("-photo");
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Error while Searching product',
             error
         })
     }
