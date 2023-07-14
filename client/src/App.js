@@ -20,6 +20,7 @@ import Search from './pages/Search';
 import ProductDetails from './pages/ProductDetails';
 import Categories from './pages/Categories';
 import CategoryProduct from './pages/CategoryProduct';
+import CartPage from './pages/CartPage';
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route exact path='/product/:slug' element={<ProductDetails />} />
         <Route exact path='/categories' element={<Categories />} />
         <Route exact path='/category/:slug' element={<CategoryProduct />} />
+        <Route exact path='/cart' element={<CartPage />} />
         <Route path='/dashboard' element={<PrivateRoute />}>
           <Route path='user' element={<Dashboard />} />
           <Route path='user/orders' element={<Orders />} />
