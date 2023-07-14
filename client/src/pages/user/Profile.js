@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '../../components/Layout/Layout'
-import UserMenu from '../../components/Layout/UserMenu'
+import Layout from '../../components/Layout/Layout.js'
+import UserMenu from '../../components/Layout/UserMenu.js'
 const Profile = () => {
     return (
         <Layout title={'Your Profile'}>

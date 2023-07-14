@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom';
-import { useAuth } from '../../context/auth';
+import { useAuth } from '../../context/auth.js';
 import { toast } from 'react-toastify'
-import SearchInput from '../Form/SearchInput';
-import useCategory from '../Hooks/useCategory';
+import SearchInput from '../Form/SearchInput.js';
+import useCategory from '../Hooks/useCategory.js';
 
 const Header = () => {
     const [auth, setAuth] = useAuth();

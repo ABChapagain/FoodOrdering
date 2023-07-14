@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../components/Layout/Layout'
+import Layout from '../components/Layout/Layout.js'
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
-import { Prices } from '../components/Prices';
+import { Prices } from '../components/Prices.js';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
