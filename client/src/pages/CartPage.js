@@ -4,6 +4,7 @@ import { useCart } from '../context/cart';
 import { useAuth } from '../context/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
+import '../styles/CartStyles.css'
 
 const CartPage = () => {
     const [auth, setAuth] = useAuth();
@@ -37,7 +38,7 @@ const CartPage = () => {
     };
     return (
         <Layout>
-            <div className="container">
+            <div className="cart-page">
                 <div className="row">
                     <div className="col-md-12">
                         <h1 className="text-center bg-light p-2 mb-1">
@@ -51,76 +52,79 @@ const CartPage = () => {
                         </h4>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-8">
-                        {cart?.map((p) => (
-                            <div className="row mb-2 p-3 card flex-row">
-                                <div className="col-md-4">
-                                    <img
-                                        src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
-                                        className="card-img-top"
-                                        alt={p.name}
-                                        width="100px"
-                                        height={"100px"}
-                                    />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8">
+                            {cart?.map((p) => (
+                                <div className="row mb-2 p-3 card flex-row">
+                                    <div className="col-md-4">
+                                        <img
+                                            src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
+                                            className="card-img-top"
+                                            alt={p.name}
+                                            width="100px"
+                                            height={"100px"}
+                                        />
+                                    </div>
+                                    <div className="col-md-8">
+                                        <p>{p.name}</p>
+                                        <p>{p.description.substring(0, 30)}</p>
+                                        <p>Rs : {p.price}</p>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => removeCartItem(p._id)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="col-md-8">
-                                    <p>{p.name}</p>
-                                    <p>{p.description.substring(0, 30)}</p>
-                                    <p>Rs : {p.price}</p>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => removeCartItem(p._id)}
-                                    >
-                                        Remove
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="col-md-4 text-center">
-                        <h2>Cart Summary</h2>
-                        <p>Total | Checkout | Payment</p>
-                        <hr />
-                        <h4>Total : Rs {totalPrice()} </h4>
-                        {auth?.user?.address ? (
-                            <>
+                            ))}
+                        </div>
+                        <div className="col-md-4 text-center">
+                            <h2>Cart Summary</h2>
+                            <p>Total | Checkout | Payment</p>
+                            <hr />
+                            <h4>Total : Rs {totalPrice()} </h4>
+                            {auth?.user?.address ? (
+                                <>
+                                    <div className="mb-3">
+                                        <h4>Current Address</h4>
+                                        <h5>{auth?.user?.address}</h5>
+                                        <button
+                                            className="btn btn-outline-warning"
+                                            onClick={() => navigate("/dashboard/user/profile")}
+                                        >
+                                            Update Address
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
                                 <div className="mb-3">
-                                    <h4>Current Address</h4>
-                                    <h5>{auth?.user?.address}</h5>
-                                    <button
-                                        className="btn btn-outline-warning"
-                                        onClick={() => navigate("/dashboard/user/profile")}
-                                    >
-                                        Update Address
-                                    </button>
+                                    {auth?.token ? (
+                                        <button
+                                            className="btn btn-outline-warning"
+                                            onClick={() => navigate("/dashboard/user/profile")}
+                                        >
+                                            Update Address
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="btn btn-outline-warning"
+                                            onClick={() =>
+                                                navigate("/login", {
+                                                    state: "/cart",
+                                                })
+                                            }
+                                        >
+                                            Plase Login to checkout
+                                        </button>
+                                    )}
                                 </div>
-                            </>
-                        ) : (
-                            <div className="mb-3">
-                                {auth?.token ? (
-                                    <button
-                                        className="btn btn-outline-warning"
-                                        onClick={() => navigate("/dashboard/user/profile")}
-                                    >
-                                        Update Address
-                                    </button>
-                                ) : (
-                                    <button
-                                        className="btn btn-outline-warning"
-                                        onClick={() =>
-                                            navigate("/login", {
-                                                state: "/cart",
-                                            })
-                                        }
-                                    >
-                                        Plase Login to checkout
-                                    </button>
-                                )}
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
+
             </div>
         </Layout>
     )
