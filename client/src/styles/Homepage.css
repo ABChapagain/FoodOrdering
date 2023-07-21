@@ -70,6 +70,8 @@ filters
 .ant-radio-wrapper {
     margin-bottom: 10px !important;
     margin-left: 10px;
+    font-size: 20px;
+        font-weight: bold;
 }
 
 .filters button {

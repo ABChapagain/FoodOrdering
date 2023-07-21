@@ -8,8 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cart.js';
 import { toast } from 'react-toastify'
 import { AiOutlineReload } from "react-icons/ai";
+import bannerImage from '../components/Images/banner.jpg'
+import { useAuth } from '../context/auth'
 
 const HomePage = () => {
+    const [auth] = useAuth();
+
+
     const navigate = useNavigate();
     const [cart, setCart] = useCart();
     const [products, setProducts] = useState([]);
@@ -19,6 +24,7 @@ const HomePage = () => {
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [rating, setRating] = useState('')
 
     const getAllCategory = async () => {
         try {
@@ -85,8 +91,10 @@ const HomePage = () => {
         }
         setChecked(all);
     };
+
+
     useEffect(() => {
-        if (!checked.length || !radio.length) getAllProducts();
+        if (!checked.length && !radio.length) getAllProducts();
     }, [checked.length, radio.length]);
 
     useEffect(() => {
@@ -106,11 +114,28 @@ const HomePage = () => {
         }
     };
 
+
+    //get filterd product
+    // const rateProduct = async (product_id) => {
+    //     try {
+
+    //         const { data } = await axios.post(`${process.env.REACT_APP_API}/product-rating`, {
+    //             product_id,
+    //             user_id: auth.user.id,
+    //             rating,
+    //         });
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
+
     return (
         <Layout title={"Food Recommendation System"}>
             {/* banner image */}
             <img
-                src="/images/banner.png"
+                src={bannerImage}
                 className="banner-img"
                 alt="bannerimage"
                 width={"100%"}
@@ -168,6 +193,10 @@ const HomePage = () => {
                                     </div>
                                     <p className="card-text ">
                                         {p.description.substring(0, 60)}...
+
+                                        {/* <input type="number" value={rating} onChange={e => setRating(e.currentTarget.value)} max={5} min={1} />
+                                        <button className='btn btn-warning' onClick={e => rateProduct(p._id)}  >Rate</button> */}
+
                                     </p>
                                     <div className="card-name-price">
                                         <button
