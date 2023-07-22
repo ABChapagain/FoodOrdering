@@ -178,7 +178,7 @@ const HomePage = () => {
                     <h1 className="text-center">All Products</h1>
                     <div className="d-flex flex-wrap">
                         {products?.map((p) => (
-                            <div className="card m-2" key={p._id}>
+                            <div className="card m-2 w-25" key={p._id}>
                                 <img
                                     src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
                                     className="card-img-top"

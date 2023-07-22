@@ -7,10 +7,10 @@ const Categories = () => {
     return (
         <Layout title={'All-Categoris'}>
             <div className="container">
-                <div className="row">
+                <div className=" d-flex ">
                     {categories.map((c) => (
-                        <div className="col-md-6 mt-5 mb-3 gx-3 gy-3" key={c._id}>
-                            <Link to={`/category/${c.slug}`} className="btn btn-primary">
+                        <div className="col-md-6 mt-4 mb-5 " key={c._id}>
+                            <Link to={`/category/${c.slug}`} className="btn btn-warning">
                                 {c.name}
                             </Link>
                         </div>

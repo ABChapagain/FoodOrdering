@@ -34,7 +34,7 @@ const CategoryProduct = () => {
                             {products?.map((p) => (
                                 <div
                                     className="card m-2"
-                                    style={{ width: "18rem" }}
+                                    style={{ width: "25rem" }}
                                     key={p._id}
                                 >
                                     <img
@@ -54,7 +54,7 @@ const CategoryProduct = () => {
                                         >
                                             More Details
                                         </button>
-                                        <button className="btn btn-secondary ms-1">
+                                        <button className="btn btn-secondary ms-1 mt-2">
                                             ADD TO CART
                                         </button>
                                     </div>
