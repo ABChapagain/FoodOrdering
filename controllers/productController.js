@@ -358,3 +358,5 @@ export const braintreePaymentController = async (req, res) => {
         console.log(error);
     }
 }
+
+//Rating

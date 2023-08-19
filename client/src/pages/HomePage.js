@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cart.js';
 import { toast } from 'react-toastify'
 import { AiOutlineReload } from "react-icons/ai";
+import Rating from '../components/Rating.js';
 import bannerImage from '../components/Images/banner.jpg'
 import { useAuth } from '../context/auth'
 
@@ -24,8 +25,11 @@ const HomePage = () => {
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [rating, setRating] = useState('')
 
+
+
+
+    //getting all category
     const getAllCategory = async () => {
         try {
             const { data } = await axios.get(`${process.env.REACT_APP_API}/get-category`);
@@ -198,6 +202,11 @@ const HomePage = () => {
                                         <button className='btn btn-warning' onClick={e => rateProduct(p._id)}  >Rate</button> */}
 
                                     </p>
+                                    {/* ratings */}
+                                    <div className="rating mb-2">
+                                        <Rating productId={p._id} handleRatingChange={(rating) => saveRating(p._id, rating)} />
+                                    </div>
+
                                     <div className="card-name-price">
                                         <button
                                             className="btn btn-info ms-1"

@@ -50,4 +50,6 @@ router.post('/braintree/payment', requireSignIn, braintreePaymentController)
 //token payment
 router.get('/braintree/token', braintreeTokenController)
 
+//Rating
+
 export default router
