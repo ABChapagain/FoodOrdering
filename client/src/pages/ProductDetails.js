@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
 import '../styles/ProductDetailsStyles.css'
+import '../styles/Homepage.css'
 import { useCart } from '../context/cart.js';
 
 const ProductDetails = () => {
@@ -47,10 +48,10 @@ const ProductDetails = () => {
                 <div className="col-md-6">
                     <img
                         src={`${process.env.REACT_APP_API}/product-photo/${product._id}`}
-                        className="card-img-top"
+                        className="card-img-top "
                         alt={product.name}
-                        height="300"
-                        width={"350px"}
+                        height={"320 px"}
+                        width={"300px"}
                     />
                 </div>
                 <div className="col-md-6 ">
@@ -76,18 +77,21 @@ const ProductDetails = () => {
             </div>
             <hr />
             <div className="row container">
-                <h6>Similar Products</h6>
+                <h6 className="text-center text-success similar">Similar Items</h6>
                 {relatedProducts.length < 1 && (
-                    <p className="text-center">No Similar Products found</p>
+                    <p className="text-center">No Similar Items found</p>
                 )}
                 <div className="d-flex flex-wrap">
                     {relatedProducts?.map((p) => (
-                        <div className="card m-2" style={{ width: "18rem" }}>
-                            <img
-                                src={`${process.env.REACT_APP_API}/product-photo/${p?._id}`}
-                                className="card-img-top"
-                                alt={p.name}
-                            />
+                        <div className="card m-2 " >
+                            <div className="home-page">
+                                <img
+                                    src={`${process.env.REACT_APP_API}/product-photo/${p?._id}`}
+                                    className="card-img-top"
+                                    alt={p.name}
+                                />
+                            </div>
+
                             <div className="card-body">
                                 <h5 className="card-title">{p.name}</h5>
                                 <p className="card-text">{p.description.substring(0, 30)}...</p>
@@ -98,7 +102,7 @@ const ProductDetails = () => {
                                 >
                                     More Details
                                 </button>
-                                <button class="btn btn-secondary ms-1" onClick={() => {
+                                <button class="btn btn-secondary ms-1 mt-1" onClick={() => {
                                     setCart([...cart, p]);
                                     localStorage.setItem(
                                         "cart",

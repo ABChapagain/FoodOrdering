@@ -49,6 +49,21 @@
     height: 300px !important;
 }
 
+.text-center{
+    text-align: center !important;
+}
+
+/* Admin order images */
+.adminorderimg{
+    width: 300px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.images{
+    object-fit: cover;
+}
+
 /* ==================
 filters
 ============== */

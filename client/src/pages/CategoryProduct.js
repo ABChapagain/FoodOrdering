@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout/Layout'
 import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from '../context/cart.js';
+import { toast } from 'react-toastify'
+
 import '../styles/CategoryProductStyles.css'
 import axios from "axios";
 const CategoryProduct = () => {
     const params = useParams();
     const navigate = useNavigate();
+    const [cart, setCart] = useCart();
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState([]);
 
@@ -39,7 +43,7 @@ const CategoryProduct = () => {
                                 >
                                     <img
                                         src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
-                                        className="card-img-top"
+                                        className="card-img-top "
                                         alt={p.name}
                                     />
                                     <div className="card-body">
@@ -54,7 +58,14 @@ const CategoryProduct = () => {
                                         >
                                             More Details
                                         </button>
-                                        <button className="btn btn-secondary ms-1 mt-2">
+                                        <button className="btn btn-secondary ms-1 mt-2" onClick={() => {
+                                            setCart([...cart, p]);
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify([...cart, p])
+                                            );
+                                            toast.success("Item Added to cart");
+                                        }}>
                                             ADD TO CART
                                         </button>
                                     </div>

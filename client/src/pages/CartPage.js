@@ -96,13 +96,13 @@ const CartPage = () => {
                         <div className="col-md-8">
                             {cart?.map((p) => (
                                 <div className="row mb-2 p-3 card flex-row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-4 ">
                                         <img
                                             src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
                                             className="card-img-top"
                                             alt={p.name}
-                                            width="100px"
-                                            height={"100px"}
+                                            width={"100px"}
+                                            height={"160px"}
                                         />
                                     </div>
                                     <div className="col-md-8">

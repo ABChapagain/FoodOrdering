@@ -49,3 +49,8 @@
 .similar-products .card-img-top {
     height: 300px !important;
 }
+
+.similar{
+    font-size: 30px;
+    font-weight: bold;
+}

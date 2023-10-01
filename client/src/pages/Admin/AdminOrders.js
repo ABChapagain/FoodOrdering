@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { toast } from 'react-toastify'
 import Layout from '../../components/Layout/Layout';
 import { useAuth } from '../../context/auth';
 import moment from 'moment';
 import AdminMenu from "./../../components/Layout/AdminMenu";
+import '../../styles/Homepage.css'
 import { Select } from 'antd';
 const { Option } = Select;
 
@@ -93,13 +93,13 @@ const AdminOrders = () => {
                                     <div className="container">
                                         {o?.products?.map((p, i) => (
                                             <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                                                <div className="col-md-4">
+                                                <div className="col-md-4 ">
                                                     <img
                                                         src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
-                                                        className="card-img-top"
-                                                        alt={p.name}
-                                                        width="100px"
-                                                        height={"100px"}
+                                                        className="adminorderimg"
+                                                    // alt={p.name}
+                                                    // width="100px"
+                                                    // height={"100px"}
                                                     />
                                                 </div>
                                                 <div className="col-md-8">

@@ -61,10 +61,10 @@ const Orders = () => {
                                                 <div className="col-md-4">
                                                     <img
                                                         src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
-                                                        className="card-img-top"
+                                                        className=" card-img-top"
                                                         alt={p.name}
-                                                        width={"50px"}
-                                                        height={"100px"}
+                                                        width={"40px"}
+                                                        height={"170px"}
                                                     />
                                                 </div>
                                                 <div className="col-md-8">

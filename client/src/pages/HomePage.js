@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cart.js';
 import { toast } from 'react-toastify'
 import { AiOutlineReload } from "react-icons/ai";
-import Rating from '../components/Rating.js';
 import bannerImage from '../components/Images/banner.jpg'
 import { useAuth } from '../context/auth'
 
@@ -119,20 +118,7 @@ const HomePage = () => {
     };
 
 
-    //get filterd product
-    // const rateProduct = async (product_id) => {
-    //     try {
 
-    //         const { data } = await axios.post(`${process.env.REACT_APP_API}/product-rating`, {
-    //             product_id,
-    //             user_id: auth.user.id,
-    //             rating,
-    //         });
-
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
 
 
     return (
@@ -198,14 +184,9 @@ const HomePage = () => {
                                     <p className="card-text ">
                                         {p.description.substring(0, 60)}...
 
-                                        {/* <input type="number" value={rating} onChange={e => setRating(e.currentTarget.value)} max={5} min={1} />
-                                        <button className='btn btn-warning' onClick={e => rateProduct(p._id)}  >Rate</button> */}
 
                                     </p>
-                                    {/* ratings */}
-                                    <div className="rating mb-2">
-                                        <Rating productId={p._id} handleRatingChange={(rating) => saveRating(p._id, rating)} />
-                                    </div>
+
 
                                     <div className="card-name-price">
                                         <button
