@@ -20,6 +20,7 @@ const HomePage = () => {
   const navigate = useNavigate()
   const [cart, setCart] = useCart()
   const [products, setProducts] = useState([])
+  const [bannerProducts, setBannerProducts] = useState([])
   const [categories, setCategories] = useState([])
   const [checked, setChecked] = useState([])
   const [radio, setRadio] = useState([])
@@ -43,6 +44,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllCategory()
+    getTopRatedProductController()
     getTotal()
   }, [])
   //get products
@@ -54,6 +56,18 @@ const HomePage = () => {
       )
       setLoading(false)
       setProducts(data.products)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
+  }
+  const getTopRatedProductController = async () => {
+    try {
+      setLoading(true)
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/get-product/toprated`
+      )
+      setBannerProducts(data.products)
     } catch (error) {
       setLoading(false)
       console.log(error)
@@ -129,12 +143,11 @@ const HomePage = () => {
   return (
     <Layout title={'Food Recommendation System'}>
       {/* banner image */}
-      <img
-        src={bannerImage}
-        className='banner-img'
-        alt='bannerimage'
-        width={'100%'}
-      />
+      <div className='d-flex justify-content-center'>
+        {bannerProducts?.map((p) => (
+          <ProductComponent p={p} />
+        ))}
+      </div>
       {/* banner image */}
       <div className='container-fluid row mt-3 home-page'>
         <div className='col-md-3 filters'>

@@ -13,6 +13,8 @@ const ProductComponent = ({ p }) => {
       <img
         src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
         className='card-img-top'
+        width={200}
+        height={300}
         alt={p.name}
       />
       <div className='card-body'>
