@@ -32,6 +32,14 @@ const productSchema = new mongoose.Schema({
     shipping: {
         type: Boolean
     },
+    averageRating: {
+        type: Number,
+        default: 0
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'users'
+    }
 }, { timestamps: true })
 
 export default mongoose.model('Products', productSchema)

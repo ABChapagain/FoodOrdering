@@ -291,24 +291,7 @@ export const productCategoryController = async (req, res) => {
     }
 }
 
-//give rating to product
-// export const ratingController = async (req, res) => {
-//     try {
-//         const { product_id,
-//             user_id,
-//             rating, } = req.body;
 
-//         console.log(product_id, user_id, rating);
-
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).send({
-//             success: false,
-//             message: 'Error while Rating product',
-//             error
-//         })
-//     }
-// }
 
 //payment gateway api
 export const braintreeTokenController = async (req, res) => {

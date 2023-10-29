@@ -120,7 +120,6 @@ const HomePage = () => {
 
 
 
-
     return (
         <Layout title={"Food Recommendation System"}>
             {/* banner image */}
@@ -183,10 +182,7 @@ const HomePage = () => {
                                     </div>
                                     <p className="card-text ">
                                         {p.description.substring(0, 60)}...
-
-
                                     </p>
-
 
                                     <div className="card-name-price">
                                         <button
