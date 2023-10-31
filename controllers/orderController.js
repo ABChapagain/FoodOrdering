@@ -10,7 +10,6 @@ export const createOrder = async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
-      user,
     } = req.body
 
     if (orderItems && orderItems.length === 0) {
@@ -19,7 +18,7 @@ export const createOrder = async (req, res) => {
     } else {
       const order = new Order({
         orderItems,
-        user,
+        user: req.user._id,
         shippingAddress,
         paymentMethod,
         itemsPrice,
@@ -34,6 +33,15 @@ export const createOrder = async (req, res) => {
         success: true,
       })
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const getMyOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user._id })
+    res.send(orders)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

@@ -91,13 +91,8 @@ const ProductDetails = () => {
             Add To Cart
           </button>
         </div>
-      </div>
-      <div className='my-5 row container'>
-        <h2>Rate the product</h2>
-        {auth?.token && (
-          <RateProduct user={auth?.user} productId={product._id} />
-        )}
-      </div>
+      </div>{' '}
+      {auth?.token && <RateProduct user={auth?.user} product={product} />}
       <div className='row container'>
         <h6 className='text-center text-success similar'>Similar Items</h6>
         {relatedProducts.length < 1 && (

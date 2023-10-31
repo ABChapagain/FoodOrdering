@@ -88,10 +88,15 @@ const CartPage = () => {
       user: auth?.user?._id,
       paymentMethod,
     }
-    console.log(order)
+    const config = {
+      headers: {
+        Authorization: `${auth?.token}`,
+      },
+    }
     const { data } = await axios.post(
       `${process.env.REACT_APP_API}/orders`,
-      order
+      order,
+      config
     )
 
     if (data.success) {
