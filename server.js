@@ -8,6 +8,8 @@ import authRoute from './routes/authRoute.js'
 import categoryRoute from './routes/categoryRoute.js'
 import productRoute from './routes/productRoute.js'
 import analyticsRoute from './routes/analyticsRoute.js'
+import orderRoute from './routes/orderRoute.js'
+
 //env configuration
 dotenv.config()
 
@@ -28,6 +30,7 @@ app.use(authRoute)
 app.use(categoryRoute)
 app.use(productRoute)
 app.use(analyticsRoute)
+app.use(orderRoute)
 
 //rest api
 app.get('/', (req, res) => {

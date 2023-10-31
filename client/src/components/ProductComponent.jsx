@@ -2,7 +2,7 @@ import React from 'react'
 import Rating from './Rating'
 import { useCart } from '../context/cart'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const ProductComponent = ({ p }) => {
   const navigate = useNavigate()
@@ -10,13 +10,15 @@ const ProductComponent = ({ p }) => {
 
   return (
     <div className='card m-2 w-25' key={p._id}>
-      <img
-        src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
-        className='card-img-top'
-        width={200}
-        height={300}
-        alt={p.name}
-      />
+      <NavLink to={`/product/${p.slug}`} className='card-img-top'>
+        <img
+          src={`${process.env.REACT_APP_API}/product-photo/${p._id}`}
+          className='card-img-top'
+          width={200}
+          height={300}
+          alt={p.name}
+        />
+      </NavLink>
       <div className='card-body'>
         <div className='card-name-price'>
           <h5 className='card-title'>{p.name}</h5>
