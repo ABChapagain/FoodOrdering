@@ -1,5 +1,6 @@
 import productModel from '../models/productModel.js'
 import CategoryModel from '../models/CategoryModel.js'
+import userModel from '../models/userModel.js'
 import slugify from 'slugify'
 import orderModel from '../models/orderModel.js'
 import braintree from 'braintree'
@@ -399,4 +400,37 @@ export const braintreePaymentController = async (req, res) => {
   }
 }
 
-//Rating
+// Rate the product
+export const productRateController = async (req, res) => {
+  try {
+    const { pid } = req.params
+    const { star, userId } = req.body
+    const product = await productModel.findById(pid)
+    const user = await userModel.findById(userId)
+    const existingRating = product.ratings.find(
+      (i) => i.postedBy.toString() === userId.toString()
+    )
+
+    if (existingRating === undefined) {
+      product.ratings.push({ star, postedBy: userId })
+      let ratings = []
+      product.ratings.map((i) => ratings.push(i.star))
+      let average =
+        ratings.reduce((prev, next) => prev + next, 0) / ratings.length
+      product.averageRating = average
+      await product.save()
+      res.status(200).send({
+        success: true,
+        message: 'Rating added successfully',
+        averageRating: product.averageRating,
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({
+      success: false,
+      message: 'Error while Rating product',
+      error,
+    })
+  }
+}

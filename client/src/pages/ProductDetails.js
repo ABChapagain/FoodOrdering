@@ -7,18 +7,38 @@ import '../styles/ProductDetailsStyles.css'
 import '../styles/Homepage.css'
 import { useCart } from '../context/cart.js'
 import ProductComponent from '../components/ProductComponent.jsx'
+import { FaRegStar, FaStar } from 'react-icons/fa'
+import RateProduct from '../components/RateProduct.jsx'
+import { useAuth } from '../context/auth.js'
 
 const ProductDetails = () => {
+  const [auth, setAuth] = useAuth()
+
   const params = useParams()
   const navigate = useNavigate()
   const [cart, setCart] = useCart()
   const [product, setProduct] = useState({})
   const [relatedProducts, setRelatedProducts] = useState([])
+  const [clientToken, setClientToken] = useState('')
 
   //initalp details
   useEffect(() => {
     if (params?.slug) getProduct()
   }, [params?.slug])
+  const getToken = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/braintree/token`
+      )
+      setClientToken(data?.clientToken)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getToken()
+  }, [auth?.token])
+
   //getProduct
   const getProduct = async () => {
     try {
@@ -72,7 +92,12 @@ const ProductDetails = () => {
           </button>
         </div>
       </div>
-      <hr />
+      <div className='my-5 row container'>
+        <h2>Rate the product</h2>
+        {auth?.token && (
+          <RateProduct user={auth?.user} productId={product._id} />
+        )}
+      </div>
       <div className='row container'>
         <h6 className='text-center text-success similar'>Similar Items</h6>
         {relatedProducts.length < 1 && (

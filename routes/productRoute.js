@@ -13,6 +13,7 @@ import {
   productFiltersContoller,
   productListController,
   productPhotoController,
+  productRateController,
   relatedProductController,
   searchProductController,
   updateProductController,
@@ -72,7 +73,7 @@ router.get('/related-product/:pid/:cid', relatedProductController)
 router.get('/product-category/:slug', productCategoryController)
 
 //rating
-// router.post('/product-rating/', ratingController)
+router.post('/rate-product/:pid', productRateController)
 
 //payment route
 router.post('/braintree/payment', requireSignIn, braintreePaymentController)
